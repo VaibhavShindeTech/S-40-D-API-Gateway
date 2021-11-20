@@ -1,0 +1,16 @@
+server:
+  port: 9094
+spring:  application:    name: STOCK-API-GATEWAY
+eureka:  client:    register-with-eureka: true
+    fetch-registry: true
+    service-url:      default-zone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+
+zuul:  prefix: /market
+  routes:    stockprice:
+      path: /api1/**
+      service-id: STOCK-PRICE-API 
+    stocktotalcost:
+      path: /api2/**
+      service-id: STOCK-CALC-API
